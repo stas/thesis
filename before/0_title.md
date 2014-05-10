@@ -19,7 +19,7 @@
     \vspace{0.8cm}
 
     by\\
-      \textbf{Sușcov Stanislav}
+      \textbf{Stanislav Sușcov}
 
     \vspace{0.8cm}
 
