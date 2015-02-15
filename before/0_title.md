@@ -8,7 +8,7 @@
         \uppercase{Realt-time communication using web technologies}
       }
       \\
-      \textbf{Solving e-mail limitations using RESTful APIs and WebSockets}
+      \textbf{Solving email limitations using RESTful APIs and WebSockets}
     }
 
     \vspace{2cm}
@@ -25,7 +25,7 @@
 
     at the\\
       Babeș-Bolyai University\\
-      \textit{Faculty of Mathematics and Computer Science}
+      Faculty of Mathematics and Computer Science
 
     \vspace{2cm}
 
