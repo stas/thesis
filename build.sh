@@ -4,4 +4,6 @@ pandoc --latex-engine=xelatex -H ./tex/settings.tex -V fontsize=12pt \
   -V documentclass:book -V papersize:a4paper -V classoption:openright \
   --chapters \
   before/*.md \
+  chapter_*/* \
+  after/*.md \
   -o thesis.pdf
