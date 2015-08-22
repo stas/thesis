@@ -34,7 +34,7 @@
 
     \vfill
 
-    Cluj-Napoca, 2014
+    Cluj-Napoca, 2015
 
   \end{center}
 
