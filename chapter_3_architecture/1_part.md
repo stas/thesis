@@ -1,3 +1,3 @@
-\frontmatter \chapter{Architecture}
+\chapter{Architecture}
 
 Intro goes here.

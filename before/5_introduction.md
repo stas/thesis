@@ -1,3 +1,4 @@
-\frontmatter \chapter{Introduction}
+\mainmatter
+\chapter{Introduction}
 
 Intro goes here.

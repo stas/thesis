@@ -1,4 +1,4 @@
-\frontmatter \chapter{Infrastructure: Leveraging the cloud}
+\chapter{Infrastructure: Leveraging the cloud}
 
 Intro goes here.
 

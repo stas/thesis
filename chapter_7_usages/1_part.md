@@ -1,3 +1,3 @@
-\frontmatter \chapter{Usages}
+\chapter{Usages}
 
 Intro goes here.

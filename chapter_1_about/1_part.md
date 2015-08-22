@@ -1,3 +1,3 @@
-\frontmatter \chapter{What is wrong with e-mail}
+\section{What is wrong with e-mail}
 
 Intro goes here.

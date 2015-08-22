@@ -1,3 +1,3 @@
-\frontmatter \chapter{Specifications}
+\chapter{Specifications}
 
 Intro goes here.

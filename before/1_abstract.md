@@ -1,4 +1,5 @@
-\frontmatter \chapter{Abstract}
+\frontmatter
+\chapter{Abstract}
 
 Electronic mail or simply email, is currently the most wide-spread and adopted
 solution for exchanging digital messages using internet. This technology was

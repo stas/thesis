@@ -1,4 +1,4 @@
-\frontmatter \chapter{Declaration}
+\chapter{Declaration}
 
 I hereby declare that this thesis is my own work and effort and that it has not
 been submitted anywhere for any award. Where other sources of information have

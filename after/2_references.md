@@ -1,3 +1,3 @@
-\frontmatter \chapter{References}
+\chapter{References}
 
 Intro goes here.
