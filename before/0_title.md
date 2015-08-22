@@ -8,7 +8,7 @@
         \uppercase{Realt-time communication using web technologies}
       }
       \\
-      \textbf{Solving email limitations using RESTful APIs and WebSockets}
+      \textbf{A modern web communication alternative}
     }
 
     \vspace{2cm}
