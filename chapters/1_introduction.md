@@ -24,13 +24,13 @@ to the email.
 All the work was open sourced in 2014 due to us failing to find funds for
 further development and traction.
 
-## The problem
+## Email
 
 While the email as a service is pretty complex, in the following chapters I
 will be focusing only on the major aspects of how the email works and what are
 the limitations of some of those aspects.
 
-### Email agents
+### Server agents
 
 Email can be described as a centralized service. This means you will need a
 central server to connect to in order to fetch your messages or to send new.
@@ -55,7 +55,7 @@ The modern message delivery agents also provide an implementation of the
 the Post Office Protocol, or both of them. These protocols mainly allow email
 clients to retrieve email messages from a remote server.
 
-### Email format
+### Message format
 
 The email format consists of two major sections:
 
@@ -70,7 +70,7 @@ The body of the email contains text, therefor the content encoding of the body
 is crucial in order to preserve the original data. The content of the body can
 be plain text or ``HTML``.
 
-### Email limitations and problems
+## Motivation
 
 Despite its huge popularity, the email as a business and personal internet
 communication solution was many times criticized for its limitations and
