@@ -6,7 +6,6 @@ pandoc \
   -V fontsize=11pt \
   -V documentclass:book \
   -V papersize:a4paper \
-  -V classoption:openright \
   -V classoption:twoside \
   --chapters \
   frontmatter/*.md \

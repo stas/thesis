@@ -2,6 +2,17 @@
 \usepackage{fancyhdr}
 \pagestyle{plain}
 
+% Reverse margins
+\let\tmp\oddsidemargin
+\let\oddsidemargin\evensidemargin
+\let\evensidemargin\tmp
+\reversemarginpar
+
+% Fonts and typesetting
+\setmainfont{Liberation Serif}
+\setsansfont{Liberation Sans}
+\setmonofont{Inconsolata}
+
 % Adjust paragraphs
 \usepackage{indentfirst}
 
