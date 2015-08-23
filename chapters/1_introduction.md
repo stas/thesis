@@ -171,8 +171,8 @@ JSON[^json] as the main format of the messages.
 
 The format of the messages would support an extensible base schema.
 
-The server architecture should represent a simple and low in requirements
-implementation. It should work as a distributed system and should be self
+The server architecture should represent a simple and low in system
+requirements. It should work as a distributed system and should be self
 discoverable for other nodes.
 
 The exchange and synchronisation of the messages between nodes should be
