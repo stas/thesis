@@ -148,10 +148,3 @@ without senders approval. This includes the attachments of the emails too.
 
 Providers of the email services also have access to end-user accounts which
 makes it even hard for an individual to control the access to his data.
-
-
-[^1]: A Request for Comments is a publication of the Internet Engineering Task
-  Force and the Internet Society, the principal technical development and
-  standards-setting bodies for the Internet.
-[^2]: http://www.emaillab.org/emailref/emailref.html
-[^3]: https://en.wikipedia.org/wiki/Merlin_Mann
