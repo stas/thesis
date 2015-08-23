@@ -3,7 +3,7 @@
 pandoc \
   --latex-engine=xelatex \
   -H ./tex/settings.tex \
-  -V fontsize=11pt \
+  -V fontsize=12pt \
   -V documentclass:book \
   -V papersize:a4paper \
   -V classoption:twoside \
