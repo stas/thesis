@@ -30,7 +30,7 @@ While the email as a service is pretty complex, in the following chapters I
 will be focusing only on the major aspects of how the email works and what are
 the limitations of some of those aspects.
 
-### Server agents
+### Server components
 
 Email can be described as a centralized service. This means you will need a
 central server to connect to in order to fetch your messages or to send new.
@@ -79,10 +79,10 @@ mentioning the following problematic aspects of the email as a software.
 
 #### Complexity and technical debt
 
-The complexity of the email systems is very high. The number of RFC[^1]
-publications related to the email contains a very long list[^2]. It is hard to
-believe an organisation can follow all these standards and limitations and
-provide a solution that will work, cost and look better.
+The complexity of the email systems is very high. The number of RFC[^rfc]
+publications related to the email contains a very long list[^emailrfcs]. It is
+hard to believe an organisation can follow all these standards and limitations
+and provide a solution that will work, cost and look better.
 
 The technical debt resides in the amount of the libraries and software that
 was mainly designed and implemented by the same organisations that wrote the
@@ -116,8 +116,8 @@ grow. This became an issue especially for institutions and individuals where
 most of the work is depending on the internet communication. Employees spend
 more and more time trying to read and reply to the messages they receive
 without being able to control the priority and importance of the content of
-their messages. The Inbox Zero[^3] approach is one of the techniques developed
-to fight the time spent reading email due to email overload.
+their messages. The Inbox Zero[^inboxzero] approach is one of the techniques
+developed to fight the time spent reading email due to email overload.
 
 #### Spamming and other internet email threats
 
@@ -148,3 +148,38 @@ without senders approval. This includes the attachments of the emails too.
 
 Providers of the email services also have access to end-user accounts which
 makes it even hard for an individual to control the access to his data.
+
+## Alternatives
+
+The idea of improving or replacing the email as a technology is not new.
+Previously there were startups and technologies built in the hope of solving
+the same problem.
+
+Some of the best ideas encouraged the usage of a chat technology with IRC[^irc]
+or XMPP[^xmpp] protocols in a working environment. With time these solutions
+usage has been declining and evolved in chat applications that communicate
+using HTTP[^http] mainly.
+
+Other solutions include document oriented or task based real-time collaboration
+software suites but restricted to private networks with proprietary protocols.
+
+## Objectives
+
+After studying the main features of the email and potential alternatives, the
+general idea was to create an exclusively web based server that works with
+JSON[^json] as the main format of the messages.
+
+The format of the messages would support an extensible base schema.
+
+The server architecture should represent a simple and low in requirements
+implementation. It should work as a distributed system and should be self
+discoverable for other nodes.
+
+The exchange and synchronisation of the messages between nodes should be
+solved in a federated way, thus offering a decentralised and self-autonomous
+service. Using real-time web technologies the delivery of the messages
+should happen instantly if a receiver is logged in.
+
+To test and gather end-user feedback, a simple client should be implemented
+in the form of a thin-client thus its functioning should be independent from
+the server.
