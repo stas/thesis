@@ -9,7 +9,7 @@ pandoc \
   -V classoption:openright \
   -V classoption:twoside \
   --chapters \
-  before/*.md \
-  chapter_*/* \
-  after/*.md \
+  frontmatter/*.md \
+  chapters/* \
+  endmatter/*.md \
   -o thesis.pdf
