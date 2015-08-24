@@ -7,6 +7,7 @@ pandoc \
   -V documentclass:book \
   -V papersize:a4paper \
   -V classoption:twoside \
+  --listings \
   --chapters \
   frontmatter/*.md \
   chapters/* \
