@@ -24,3 +24,4 @@
   stateless client-server communication protocols.
 [^activerecord]: Is an architectural pattern named by Martin Fowler used for
   software implementations to access data in a database.
+[^uri]: Uniform resource identifier is used to identify the name of a resource.
