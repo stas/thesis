@@ -1,14 +1,12 @@
 \begin{titlepage}
   \begin{center}
 
-    \vspace*{1cm}
-
     \large{
       \textbf{
         \uppercase{Realt-time communication using web technologies}
       }
       \\
-      \textbf{A modern instant messaging web alternative}
+      \textbf{A modern internet messaging alternative}
     }
 
     \vspace{2cm}
@@ -32,7 +30,7 @@
     Thesis supervisor:
       \textbf{Lect. Dr. Adrian Sterca}
 
-    \vfill
+    \vspace{2cm}
 
     \includegraphics[scale=0.1]{ubb_logo}
 
