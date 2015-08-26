@@ -3,7 +3,7 @@
 I would first like to thank my supervisor, Lect. Dr. Adrian Sterca for all his
 support, input and help during meetings.
 
-I would also like to thank my parents, who have been supportive and patient
+I would also like to thank my mother, who have been supportive and patient
 with me during all this time at the university.
 
 Finally, I would like to thank my co-founders and our investors, in particular
