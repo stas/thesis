@@ -4,7 +4,7 @@ This chapter explains some of the decisions that led to the final architecture.
 The most challenging parts and implementation details, along with the specifications
 and database schema were structured in the form of sub chapters.
 
-As part of our objectives, the main focus was to build something simple
+As part of the objectives, the main focus was to build something simple
 and low in requirements. The purpose of this architecture is at some point to
 become a fully self-sustainable federated network of nodes, each communicating
 with each other using the web technologies and web protocols.
@@ -12,15 +12,15 @@ with each other using the web technologies and web protocols.
 ## Preliminary Decisions
 
 Some of the questions I had to answer were related to the final storage
-technology we will have to adopt, along with the programming language and
-framework/toolset we will use to build and deliver our components.
+technology that will be adopted, along with the programming language and
+the framework/toolset that will be used to build and deliver the components.
 
 Researching the storage options, I opted for PostgreSQL. Beside this being the
-most advanced open source database, it offered a set of features we could rely
-on in order to provide key-value storage along with the relational entities.
-Studying the database pub-sub[^pgnotify] implementation it was clear this
-can reduce the technology in the stack. I will go in more details on how these
-aspects of the database were used in the next chapters.
+most advanced open source database, it offered a set of reliable features that
+can be used on in order to provide key-value storage along with the relational
+entities. Studying the database pub-sub[^pgnotify] implementation it was clear
+this can reduce the technology in the stack. I will go in more details on how
+these aspects of the database were used in the next chapters.
 
 The framework/toolset needed to build the application required to follow the
 RAD[^rad] approach because of the amount of prototyping I was estimating. I
@@ -53,7 +53,7 @@ details. When users will want to send a message to somebody, they will start
 a conversation.
 
 The way this conversation carry information is through its messages. Messages
-are a separate model in our schema and represent the text users exchange inside
+are a separate model in the schema and represent the text users exchange inside
 a conversation. These messages can have replies and attachments.
 
 While replies also represent messages, attachments are absolutely different.
@@ -139,7 +139,7 @@ was to provide unique identifiers for conversation related models and
 collaboration related models. In this case, a conversation carrying a unique
 identifier and owned by a user with a unique identifier can be easily tracked
 by a synchronisation process. I used universally unique identifiers (UUIDs),
-attached to our relevant models as a temporary solution until more work is done
+attached to the relevant models as a temporary solution until more work is done
 in order to support this functionality.
 
 ## Web API
@@ -170,7 +170,7 @@ extend exiting features.
 
 ### Endpoints
 
-Having our models defined and following the ReST architecture allowed to
+Having the models defined and following the ReST architecture allowed to
 easily deliver the most of the API endpoints and focus on the specifications
 of each endpoint. The content type used to consume the API endpoints is JSON
 because of the human-readable and lightweight format.
@@ -384,7 +384,7 @@ module Notifier
 end
 ```
 
-In the code listing above, we trigger a callback for the newly created
+In the code listing above, a callback is triggered for the newly created
 conversation messages. This callback gathers information about the payload and
 serializes it in the form of `<type>, <id>`, and about the channels this
 payload needs to be distributed. The channels are the conversation participants
@@ -521,6 +521,42 @@ pool in order to be reused.
 
 ## Scaling concerns
 
+One of the aspects of the communication software is that it usually needs to
+handle a lot of users in order to actually make possible the communication. And
+although in our case the objectives stated that the initial purpose of the
+application is to provide services in small teams, the overall architecture
+needs some clarifications in regards to how small is a team until it is a big
+one and how this can be addressed when it happens.
+
+The main limitations of the real-time mechanism rely mainly on the number of
+the connections the database can allowed to handle. In PostgreSQL, the
+`work_mem` configuration directive is 1MB by default and represents the amount
+of memory a database connection can use. Knowing this it is easy to estimate
+and increase the maximum amount of connections the database server will handle.
+In case of larger installations an external brokerless non-persistent messaging
+queue solution can be adopted (ZeroMQ[^zeromq] or nanomsg[^nanomsg] to name a
+few), replacing the current direct communication of a WebSocket with the
+database, and instead, connecting to the message queue service.
+
 ## Testing
+
+Automated testing using the BDD testing framework RSpec was used to make sure all the
+specifications and functionalities work as expected. Unit tests were provided
+for models and integration tests for the controllers.
+
+For evaluation purposes of the application functionality, a client was also
+written. And although I will present the evaluation results in the next
+chapter, the client was used to write and run functional tests.
+
+To run the functional tests, a headless browser engine was used to load the
+application client and make sure it works with as would a user use it. This
+approach allows testing the client and directly the application in different
+user environments: from different operating systems to different browser
+versions and engines.
+
+Finally a continuous integration server was used to run the tests against every
+change that was made along the development process. Continuous integration
+proved to be a great tool helping to reduce the number of regressions and bugs
+without too much effort.
 
 ## Deployment

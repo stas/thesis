@@ -28,3 +28,6 @@
 [^uri]: Uniform resource identifier is used to identify the name of a resource.
 [^jsonapi]: http://jsonapi.org
 [^fatmodel]: http://weblog.jamisbuck.org/2006/10/18/skinny-controller-fat-model
+[^zeromq]: ØMQ is a high-performance asynchronous library. http://zeromq.org
+[^nanomsg]: A rewrite of the ØMQ core library by one of its original authors,
+  Martin Sustrik. http://nanomsg.org/
