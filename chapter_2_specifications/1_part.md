@@ -1,3 +1,0 @@
-\chapter{Specifications}
-
-Intro goes here.
