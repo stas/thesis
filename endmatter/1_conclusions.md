@@ -1,3 +1,0 @@
-# Conclusions
-
-Intro goes here.

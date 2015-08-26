@@ -25,13 +25,13 @@ these aspects of the database were used in the next chapters.
 The framework/toolset needed to build the application required to follow the
 RAD[^rad] approach because of the amount of prototyping I was estimating. I
 also needed a programming language with a community and an ecosystem oriented
-towards the most cutting edge web technologies, but with a decent stability
+towards the latest edge web technologies, but with a decent stability
 and clear future.
 
-I settled on the Ruby programming language and Ruby on Rails web framework. The
-Rails community has a great impact on the web technologies and tools. This was
-proven by solutions like Sass[^sass] and Haml[^haml] and large scale adoption
-was concepts like ReST[^rest]ful Model-View-Controller,
+I decided to use the Ruby programming language and Ruby on Rails web framework.
+The Rails community has a great impact on the web technologies and tools. This
+was proven by solutions like Sass[^sass] and Haml[^haml] and large scale
+adoption was concepts like ReST[^rest]ful Model-View-Controller,
 ActiveRecord[^activerecord] object-relational mapping, and test driven
 development and behaviour driven development.
 
