@@ -31,3 +31,5 @@
 [^zeromq]: ØMQ is a high-performance asynchronous library. http://zeromq.org
 [^nanomsg]: A rewrite of the ØMQ core library by one of its original authors,
   Martin Sustrik. http://nanomsg.org/
+[^ssh]: Secure Shell is a network protocol used to connect to remote machines
+  in a secure way.

@@ -560,3 +560,13 @@ proved to be a great tool helping to reduce the number of regressions and bugs
 without too much effort.
 
 ## Deployment
+
+In order to provide an automated installation method, a deployment strategy was
+developed. The application requirements include the installtion of third-party
+libraries, creating and migration of the database schema and assets compiling.
+All these tasks can result in human errors if not automated.
+
+A deployment tool was used to connect using SSH[^ssh] to the remote server
+and run the required operations that were provided using a configuration file.
+The tool also provided support for rolling back to previous releases in case
+of an emergency or a bad release.
