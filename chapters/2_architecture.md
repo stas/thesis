@@ -266,10 +266,62 @@ specifications used by serializers was inspired from the JSON-API[^jsonapi]
 project initiative, although the most recent version is highly different from
 what is used in the project.
 
-From the specifications, the main highlights are:
+Writing the specifications for the endpoint payloads, I followed some of the
+conventions where the main highlights are:
 
- *
+ * always provide a root key for the payload (usually matches the resource
+   endpoint), this helps embeding meta information aside from the expected data
+ * keep the payload normalized, thus providing the associations using the
+   relevant identifiers
+ * embed records of different types in the same payload when possible to
+   reduce the number of requests and client waiting time.
 
+
+A serializer can be considered as a light wrapper that uses the specifications
+and generates machine or human readable data without requiring the manual
+intervention to handle different formats or switching from one format to
+another based on the content type negotiation mechanism.
+
+A serializer usually has a very simple structure and can be extended using
+inheritance. Below is a listing of the same conversation serializer.
+
+```ruby
+# Conversation class serializer
+class ConversationSerializer < ActiveModel::Serializer
+  root :conversation
+
+  attributes :id, :title, :created_at
+
+  has_one :user, :embed_key => :slug, :embed_in_root => false
+  has_one :summary, :embed_key => :slug, :embed_in_root => false
+  has_many :messages, :embed_key => :slug, :embed_in_root => false
+  has_many :participants, :embed_key => :slug, :embed_in_root => false
+
+  # Mask the id with the slug value
+  def id
+    object.slug
+  end
+end
+```
+
+If we looks at the naming of the controller and the serializer, we can see that
+it follows the same pattern. This is a Rails convention and it helps keeping
+things organized without too much coupling logic. Below is a listing of a
+response from the conversations controller.
+
+```json
+{
+  "conversation": {
+    "id": "832f94a9af",
+      "title": "Ola",
+      "created_at": "2015-08-23T21:13:03.202Z",
+      "user_id": "8a7efd0f1a",
+      "summary_id": null,
+      "message_ids": ["e580fceb1d", "4a0d334572", "ee193ae989", "5eb0bc38d0"],
+      "participant_ids": ["8a7efd0f1a"]
+  }
+}
+```
 
 ## Real-time communication
 
