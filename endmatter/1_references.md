@@ -14,7 +14,7 @@
   data-interchange format.
 [^pgnotify]: Publish–subscribe is a messaging pattern to provide reliable
   many-to-many, asynchronous messaging between applications. In PostgreSQL this
-  is available using ``LISTEN``/``NOTIFY``:
+  is available using ``LISTEN``/``NOTIFY``.
   http://www.postgresql.org/docs/9.0/static/sql-notify.html
 [^rad]: Rapid application development defines a software development approach
   where less emphasis is placed on planning and more emphasis is placed on
@@ -30,7 +30,12 @@
 [^fatmodel]: http://weblog.jamisbuck.org/2006/10/18/skinny-controller-fat-model
 [^zeromq]: ØMQ is a high-performance asynchronous library. http://zeromq.org
 [^nanomsg]: A rewrite of the ØMQ core library by one of its original authors,
-  Martin Sustrik. http://nanomsg.org/
+  Martin Sustrik. http://nanomsg.org
 [^ssh]: Secure Shell is a network protocol used to connect to remote machines
   in a secure way.
-[^ember]: http://emberjs.com/
+[^ember]: Open source JavaScript application framework
+  following MVC pattern. http://emberjs.com
+[^last7months]: http://ampersate.com/the-last-7-months-of-our-venture
+[^founden]: https://github.com/Founden/founden
+[^fastmail]: https://www.fastmail.com
+[^mainframeco]: http://mainframe.co
