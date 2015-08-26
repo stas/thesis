@@ -325,6 +325,200 @@ response from the conversations controller.
 
 ## Real-time communication
 
+In order to provide a mechanism that will enable real-time communication
+between the application and a third-party consumer (this can be a client or an
+another node in the network) we need to know when a new message arrived and
+send it over to the relevant recipient.
+
+This description fits very well the messaging queues purpose, but messaging
+queues usually require a broker. This broker is usually a service that knows
+how to route the message to appropriate receivers. During the design of the
+architecture this aspect was delegated to the database itself by using the
+PostgreSQL `LISTEN` and `NOTIFY` commands.
+
+### Routing and the announcement of the updates
+
+The way `NOTIFY` works, provides an asynchronous way to announce new messages
+for subscribers of a channel. The channel is simply an identifier to group
+messages and route these to subscribers with the same identifier. In our case
+the subscribers can be described as conversation participants and the messages
+can be represented by the type and database identifiers of the new content
+submitted by the conversation participants.
+
+By having the database normalised, the application message needs to provide
+just a minimal amount of the information about the data that was updated or needs
+to be synchronised. In our case, sending notifications about new conversation
+messages will also provide relevant information about the participants and
+attachments.
+
+```ruby
+# Support for notifications
+module Notifier
+  # Support for concerns
+  extend ActiveSupport::Concern
+
+  included do
+    after_create :notify_channels
+  end
+
+  private
+
+  # Generates a payload to be sent on notify
+  # @return String comma delimited values of form `Class, ID`
+  def payload
+    self.class.connection.quote([self.class.name, self.id].join(','))
+  end
+
+  # Callback to notify one of the channels
+  def notify_channels
+    notification_channels.each do |channel|
+      self.class.connection.execute('NOTIFY %s, %s' % [channel, payload])
+    end
+  end
+
+  # Returns a list of channels to be notified
+  # @return Should return an array with string values of form `['user_ID']`
+  def notification_channels
+    []
+  end
+end
+```
+
+In the code listing above, we trigger a callback for the newly created
+conversation messages. This callback gathers information about the payload and
+serializes it in the form of `<type>, <id>`, and about the channels this
+payload needs to be distributed. The channels are the conversation participants
+serialized in the form of `user_<id>`. The `Notifier` module is used by the
+messages model and overwrites the private method
+`Notifier#notification_channels` to provide the relevant information.
+
+### Delivery of the updates
+
+Before describing the implementation details of how the messages arrive to the
+subscribers, I need to describe the web technology used to provide the transportation
+of the messages.
+
+The nature of this functionality requires a subscriber to be connected to the
+right channel in order to receive updates. HTTP is not a reliable option and in
+the next chapters I will address this question separately. But HTTP version 1.1
+provides a mechanism called _upgrade header_ in order to allow clients to
+establish a connection in a compatible way. One of the protocols that is
+supported and can be used to provide a more robust connection is called
+WebSocket. This protocol provides a full-duplex communication over a single
+TCP connection and it works in a similar manner with a message queue by using
+channels. Although WebSocket is an independent protocol, it is considered a web
+technology and is supported very well.
+
+To dispatch the updates the application uses the WebSocket protocol along with
+the already mentioned PostgreSQL `LISTEN` command. The `LISTEN` command is not
+blocking and it works more like a registration call, announcing the server that
+any messages to a specific channel should be sent to this connection too. In
+order to de-register, or unsubscribe from a certain channel `UNLINSTEN` command
+is available and uses the channel as the parameter. The connection receives the
+messages using the `select` API method afterwards which is blocking. The data
+received by the connection socket is processed and materialized into a model
+object. The code listing below represents the implementation of the database
+relevant aspects.
+
+```ruby
+# Support for listening
+module Listener
+  # Support for concerns
+  extend ActiveSupport::Concern
+
+  # Listens to the channel for notifications and yields if any
+  def on_notifications
+    self.before_listen if self.respond_to?(:before_listen)
+
+    self.class.connection.execute('LISTEN %s' % channel)
+    loop do
+      handle_notifications do |incoming|
+        yield incoming
+      end
+    end
+  ensure
+    self.class.connection.execute('UNLISTEN %s' % channel)
+
+    self.after_listen if self.respond_to?(:after_listen)
+
+    # Make sure we close this connection since its thread will be killed!
+    self.class.connection.close()
+  end
+
+  private
+
+  # Listens and handles any incoming notifications
+  def handle_notifications
+    self.class.connection.raw_connection.wait_for_notify do |ev, pid, payload|
+      if parsed_payload = parse_payload(payload)
+        yield parsed_payload
+      end
+    end
+  end
+
+  # Handles payload
+  # @param String payload
+  # @return Object
+  def parse_payload(payload)
+    payload_class, payload_id = payload.split(',')
+    if payload_class and klass = payload_class.safe_constantize
+      klass.find(payload_id.to_i) rescue nil
+    end
+  end
+
+  # Returns the channel to listen to
+  def channel
+    '%s_%d' % [self.class.name.downcase, self.id]
+  end
+end
+
+```
+
+The materialized model object is finally dispatched to the client using
+WebSocket as a JSON serialised string. The format of data coming through the
+WebSocket follows the specifications and in fact uses a slightly modified
+serializer, mostly to include as much data as possible.
+
+```ruby
+# API (v1) misc controller class
+class Api::V1::MiscController < Api::V1::ApplicationController
+  # Websockets support
+  include Tubesock::Hijack
+
+  # Streams available activities
+  def websocket
+    hijack do |tubesock|
+      # Listen on its own thread
+      socket_thread = Thread.new do
+        current_account.on_notifications do |obj|
+          tubesock.send_data _render_option_json(
+            obj, {:serializer => UpdateSerializer})
+        end
+      end
+
+      tubesock.onmessage do |msg|
+        tubesock.send_data _('Error: 405')
+      end
+
+      tubesock.onclose do
+        # Stop listening when client leaves
+        socket_thread.kill
+      end
+    end
+  end
+end
+
+```
+
+In the listing above is the controller implementation responsible for the
+`/api/v1/socket` endpoint, which is where WebSocket clients will connect to.
+Because of the blocking aspects of how the messages are received by the
+database connection, in order to keep the WebSocket alive until the client
+disconnects, the controller starts a thread and runs the delivery of the
+messages inside it. The thread is stopped when the WebSocket client disconnects
+and the database connection is either closed or returned to the connections
+pool in order to be reused.
+
 ## Scaling concerns
 
 ## Testing
