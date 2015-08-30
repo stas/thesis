@@ -32,6 +32,16 @@
 \usepackage{graphicx}
 \graphicspath{ {assets/} }
 
+% References
+\usepackage{endnotes}
+\let\footnote=\endnote
+\def\notesname{}
+\renewcommand\makeenmark{\textsuperscript{[\theenmark]}}
+\patchcmd{\theendnotes}
+  {\makeatletter}
+  {\makeatletter\renewcommand\makeenmark{[\theenmark] }}
+  {}{}
+
 % Code listing
 \usepackage{listings}
 \usepackage{xcolor}

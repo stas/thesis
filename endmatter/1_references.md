@@ -1,41 +1,44 @@
-[^rfc]: A Request for Comments is a publication of the Internet Engineering Task
-  Force and the Internet Society, the principal technical development and
-  standards-setting bodies for the Internet.
-[^emailrfcs]: http://www.emaillab.org/emailref/emailref.html
-[^inboxzero]: Inbox zero is an approach developed by Merlin Mann aimed to help
-  email users keeping their inbox close to empty.
-[^irc]: Internet Relay Chat is a protocol designed to facilitate the real-time
-  exchange of the text messages.
-[^xmpp]: Extensible Messaging and Presence Protocol is a protocol designed to
-  facilitate the real-time exchange of the messages using ``XML``.
-[^http]: Hypertext Transfer Protocol, is the foundation of data communication for
-  the World Wide Web.
-[^json]: JavaScript Object Notation is a lightweight human readable
-  data-interchange format.
-[^pgnotify]: Publish–subscribe is a messaging pattern to provide reliable
-  many-to-many, asynchronous messaging between applications. In PostgreSQL this
-  is available using ``LISTEN``/``NOTIFY``.
-  http://www.postgresql.org/docs/9.0/static/sql-notify.html
-[^rad]: Rapid application development defines a software development approach
-  where less emphasis is placed on planning and more emphasis is placed on
-  development.
-[^sass]: Syntactically Awesome Style Sheets. A ``CSS`` preprocessor.
-[^haml]: HTML abstraction markup language. An ``HTML`` preprocessor.
-[^rest]: Representational State Transfer is a software architecture used for
-  stateless client-server communication protocols.
-[^activerecord]: Is an architectural pattern named by Martin Fowler used for
-  software implementations to access data in a database.
-[^uri]: Uniform resource identifier is used to identify the name of a resource.
-[^jsonapi]: http://jsonapi.org
-[^fatmodel]: http://weblog.jamisbuck.org/2006/10/18/skinny-controller-fat-model
-[^zeromq]: ØMQ is a high-performance asynchronous library. http://zeromq.org
-[^nanomsg]: A rewrite of the ØMQ core library by one of its original authors,
-  Martin Sustrik. http://nanomsg.org
-[^ssh]: Secure Shell is a network protocol used to connect to remote machines
-  in a secure way.
-[^ember]: Open source JavaScript application framework
-  following MVC pattern. http://emberjs.com
-[^last7months]: http://ampersate.com/the-last-7-months-of-our-venture
-[^founden]: https://github.com/Founden/founden
-[^fastmail]: https://www.fastmail.com
-[^mainframeco]: http://mainframe.co
+\backmatter
+
+# References
+
+\theendnotes
+
+[^rfc]: IETF, _Request for Comments_, https://www.ietf.org/rfc.html
+[^emailrfcs]: Takizawa Takashi, _RFC indices related to the Internet Mail_,\
+    http://www.emaillab.org/emailref/emailref.html
+[^inboxzero]: Merlin Mann, _Inbox Zero action-based email_,
+    http://www.43folders.com/izero
+[^irc]: Wikipedia, _Internet Relay Chat_,
+    https://en.wikipedia.org/wiki/Internet_Relay_Chat
+[^xmpp]: Wikipedia, _XMPP_, https://en.wikipedia.org/wiki/XMPP
+[^http]: W3C, _HTTP - Hypertext Transfer Protocol_, http://www.w3.org/Protocols/
+[^json]: Wikipedia, _JSON_, https://en.wikipedia.org/wiki/JSON
+[^pgnotify]: PostgreSQL 9.3.9 Documentation, _NOTIFY_,\
+    http://www.postgresql.org/docs/9.3/static/sql-notify.html
+[^rad]: Wikipedia, _Rapid application development_,\
+    https://en.wikipedia.org/wiki/Rapid_application_development
+
+[^sass]: Sass, _Syntactically Awesome Style Sheets_, http://sass-lang.com/
+[^haml]: Wikipedia, _Haml_, https://en.wikipedia.org/wiki/Haml
+[^rest]: Wikipedia, _Representational state transfer_,\
+    https://en.wikipedia.org/wiki/Representational_state_transfer
+[^activerecord]: Martin Fowler, _Catalog of Patterns of Enterprise Application
+  Architecture: Active Record_, http://www.martinfowler.com/eaaCatalog/activeRecord.html
+[^uri]: W3C, _Naming and Addressing: URIs, URLs, ..._,
+  http://www.w3.org/Addressing/
+[^jsonapi]: JSON API, _A specification for building APIs in JSON_,
+  http://jsonapi.org/
+[^fatmodel]: Jamis Buck, _Skinny Controller, Fat Model_,\
+    http://weblog.jamisbuck.org/2006/10/18/skinny-controller-fat-model
+[^zeromq]: Wikipedia, _ØMQ_, https://en.wikipedia.org/wiki/%C3%98MQ
+[^nanomsg]: Martin Sustrik, _Differences between nanomsg and ZeroMQ_,
+  http://nanomsg.org/documentation-zeromq.html
+[^ssh]: Wikipedia, _Secure Shell_, https://en.wikipedia.org/wiki/Secure_Shell
+[^ember]: Wikipedia, _Ember.js_, https://en.wikipedia.org/wiki/Ember.js
+[^last7months]: Stas Sușcov, _The last 7 months of our venture_,
+  http://ampersate.com/the-last-7-months-of-our-venture
+[^founden]: Github, _Founden: Experimental online communication and
+  collaboration tool_, https://github.com/Founden/founden
+[^fastmail]: Wikipedia, _Fastmail_, https://en.wikipedia.org/wiki/FastMail
+[^mainframeco]: Switchboard, _About_, http://switchboard.spatch.co/about/
