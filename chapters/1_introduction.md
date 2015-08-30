@@ -47,10 +47,8 @@ order to fetch your messages or to send new.
 \includegraphics[scale=0.24]{email}
 
 Above is a simplified illustration of how email as the service operates. The
-simplified email server requires the presence of two components:
-
- * the ``MTA``, message transfer agent
- * the ``MDA``, message delivery agent
+simplified email server requires the presence of two components: the message
+transfer agent (`MTA`) and the message delivery agent (`MDA`).
 
 The message transfer agent is the software that can operate both as a client
 and as a server in order to handle the transfer of the email messages from one
@@ -208,11 +206,9 @@ the same problem.
 Some of the best ideas encouraged the usage of a chat technology with IRC[^irc]
 or XMPP[^xmpp] protocols in a working environment. With time these protocols
 usage has been declining. Things eventually evolved into chat applications that
-communicate using HTTP[^http] mainly.
-
-Other solutions include document oriented or task based real-time
-collaboration. Some of those restricted to private networks with proprietary
-protocols.
+communicate using HTTP[^http] mainly. Other solutions include document oriented
+or task based real-time collaboration. Some of those restricted to private
+networks with proprietary protocols.
 
 ## Objectives
 

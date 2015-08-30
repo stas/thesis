@@ -55,6 +55,6 @@ contributions, simply because of the adoption rate and the user-base. Still,
 some of the companies and projects interesting for the same subject we were and
 worth mentioning are:
 
- * JMAP, a JSON API for email services from FastMail[^fastmail], http://jmap.io/
+ * JMAP, a JSON API for email services from FastMail[^fastmail], http://jmap.io
  * Switchboard, an email processing framework by Mainframe.co[^mainframeco],
-   http://switchboard.spatch.co/
+   http://switchboard.spatch.co
