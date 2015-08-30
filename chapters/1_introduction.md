@@ -35,6 +35,8 @@ the limitations of some of those aspects.
 Email can be described as a centralized service. This means you will need a
 central server to connect to in order to fetch your messages or to send new.
 
+\includegraphics[scale=0.24]{email}
+
 The simplified email server requires the presence of two components:
 
  * the ``MTA``, message transfer agent

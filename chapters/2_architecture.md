@@ -521,6 +521,8 @@ pool in order to be reused.
 
 ## Scaling concerns
 
+\includegraphics[scale=0.3]{app}
+
 One of the aspects of the communication software is that it usually needs to
 handle a lot of users in order to actually make possible the communication. And
 although in our case the objectives stated that the initial purpose of the
