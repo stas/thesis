@@ -19,10 +19,8 @@ an email alternative. My responsibilities among other things were to architect
 and build a web application that could work as a better tool to communicate
 inside smaller teams. On eventual success, this tool would become a new
 _protocol_ to make the communication possible between other teams. Thus
-representing an alternative to the email.
-
-All the work was open sourced in 2014 due to us failing to find funds for
-further development and traction.
+representing an alternative to the email. All the work was open sourced in 2014
+due to us failing to find funds for further development and traction.
 
 ## Email
 

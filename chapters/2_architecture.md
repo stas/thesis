@@ -5,9 +5,10 @@ The most challenging parts and implementation details, along with the
 specifications and database schema were structured in the form of sub chapters.
 
 As part of the objectives, the main focus is to build something low in
-requirements and easily maintainable. The purpose of the architecture is
-also to make the foundation easy to extend and enable developers to adapt it
-and build upon it. All this using the web technologies and web protocols.
+requirements and easily maintainable. The purpose of the architecture is also
+to make the foundation easy to extend and enable developers to adapt it and
+build upon it (mobile applications and other software integrations). All this
+using the web technologies and web protocols.
 
 ## Preliminary Decisions
 
@@ -119,8 +120,7 @@ membership and friendship entities.
 The collaboration design was also structured keeping in mind the fact that
 one application can communicate with another one, thus creating a federated
 architecture of resources that share common conversations. Although further
-work on this aspects was not done. Please consult the last chapter to find more
-on the topic of _further work_.
+work on this aspects was not done.
 
 ### Real-time aspects
 
