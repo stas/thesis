@@ -34,7 +34,7 @@
 
     \includegraphics[scale=0.1]{ubb_logo}
 
-    Cluj-Napoca, 2015
+    Cluj-Napoca, \the\year
 
   \end{center}
 
