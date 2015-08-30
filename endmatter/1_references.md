@@ -38,6 +38,7 @@
 [^zeromq]: Wikipedia, _ØMQ_, https://en.wikipedia.org/wiki/%C3%98MQ
 [^nanomsg]: Martin Sustrik, _Differences between nanomsg and ZeroMQ_,
   http://nanomsg.org/documentation-zeromq.html
+[^push]: Wikipedia, _Push technology_, https://en.wikipedia.org/wiki/Push_technology
 [^ssh]: Wikipedia, _Secure Shell_, https://en.wikipedia.org/wiki/Secure_Shell
 [^ember]: Wikipedia, _Ember.js_, https://en.wikipedia.org/wiki/Ember.js
 [^last7months]: Stas Sușcov, _The last 7 months of our venture_,

@@ -1,26 +1,27 @@
 # Architecture
 
 This chapter explains some of the decisions that led to the final architecture.
-The most challenging parts and implementation details, along with the specifications
-and database schema were structured in the form of sub chapters.
+The most challenging parts and implementation details, along with the
+specifications and database schema were structured in the form of sub chapters.
 
-As part of the objectives, the main focus was to build something simple
-and low in requirements. The purpose of this architecture is at some point to
-become a fully self-sustainable federated network of nodes, each communicating
-with each other using the web technologies and web protocols.
+As part of the objectives, the main focus is to build something low in
+requirements and easily maintainable. The purpose of the architecture is
+also to make the foundation easy to extend and enable developers to adapt it
+and build upon it. All this using the web technologies and web protocols.
 
 ## Preliminary Decisions
 
 Some of the questions I had to answer were related to the final storage
 technology that will be adopted, along with the programming language and
-the framework/toolset that will be used to build and deliver the components.
+the framework/toolset that will be used to build and deliver the first version.
 
-Researching the storage options, I opted for PostgreSQL. Beside this being the
-most advanced open source database, it offered a set of reliable features that
-can be used on in order to provide key-value storage along with the relational
-entities. Studying the database pub-sub[^pgnotify] implementation it was clear
-this can reduce the technology in the stack. I will go in more details on how
-these aspects of the database were used in the next chapters.
+Researching the storage options, I opted for PostgreSQL. Beside this being a
+very stable and easy to install open source database, it offered a set of
+reliable features that can be used on in order to provide key-value storage
+along with the relational entities. Studying the database pub-sub[^pgnotify]
+implementation it was clear this can reduce the technology in the stack too. I
+will go in more details on how these aspects of the database were used in the
+next chapters.
 
 The framework/toolset needed to build the application required to follow the
 RAD[^rad] approach because of the amount of prototyping I was estimating. I
@@ -31,20 +32,24 @@ and clear future.
 I decided to use the Ruby programming language and Ruby on Rails web framework.
 The Rails community has a great impact on the web technologies and tools. This
 was proven by solutions like Sass[^sass] and Haml[^haml] and large scale
-adoption was concepts like ReST[^rest]ful Model-View-Controller,
+adoption of concepts like ReST[^rest]ful Model-View-Controller,
 ActiveRecord[^activerecord] object-relational mapping, and test driven
 development and behaviour driven development.
 
 ## Database schema
 
 During the database design I tried to apply the same principles as in case of
-the overall architecture so that to keep things as simple as possible.
+the overall architecture so that to keep things as simple as possible. Some of
+the basic principles were to avoid big tables by normalisation practices. And
+although the database schema is an important aspect of the architecture, I will
+try to focus only on the most relevant entities and relationships.
 
 ### Conversations
 
-The way I decided to organize the data users exchange is in the form of conversation.
-The conversations are the simplest units that keep the data organized. Compared
-to email, conversations would represent messages, but with a very big difference.
+The way It was decided to structure the data the users exchange is in the form
+of conversation. The conversations represent the simplest units that keep the
+data organized. Compared to email, conversations would represent messages, but
+with a very big difference.
 
 The conversation model is very normalized compared to the monolithic email
 message format. But it is a little more complex compared to a chat message. A
@@ -54,7 +59,8 @@ a conversation.
 
 The way this conversation carry information is through its messages. Messages
 are a separate model in the schema and represent the text users exchange inside
-a conversation. These messages can have replies and attachments.
+a conversation. These messages can have replies and attachments. The initial
+version of the messages does not provide support for encryption.
 
 While replies also represent messages, attachments are absolutely different.
 Attachments, just like messages, belong to an user. This solves the privacy
@@ -63,12 +69,12 @@ own behalf information without owners concern. But also structure and separate
 types of attachments by leveraging single table inheritance.
 
 From the storage point of view, all the attachments look the same. A file and
-an event are stored in the same table. This is possible thanks to the concept
-of single table inheritance. From the functional point of view, a file behaves
-different from the event attachment type. This is possible by using the
-key-value storage provided by the PostgreSQL database and called ``hstore``.
-Thanks to this technology a key-value document can be defined as a database
-table column. The application defines the following attachments types:
+and event attachments are stored in the same table. This is possible thanks to
+the concept of single table inheritance. From the functional point of view, a
+file behaves different from the event attachment type. This is also possible by
+using the key-value storage provided by the PostgreSQL database and called
+`hstore`. Thanks to this technology a key-value document can be defined as a
+database table column. The application defines the following attachments types:
 
  * uploads, abstract interface to handle file uploads to cloud services
  * timestamps, used to represent event informations
@@ -76,23 +82,23 @@ table column. The application defines the following attachments types:
  * locations, used to store and display geographic locations
  * task lists, simple set of items to organize and track objectives
 
-The list can be extended with very little effort, although the initial
+The list can be extended with a very little effort, although the initial
 functionalities can be considered some of the most popular things individuals
 exchange using email.
 
 In order to provide end-users with a way to highlight important messages in the
 long conversations, the concept of a summary is handled by the model with the
-same name. A summary has many messages and attachments that ends up looking
+same name. A summary has many messages and attachments that end up looking
 like a report. Such a report can be shared with collaborators without breaking
 any privacy rules since the only specific messages can be included in it.
 
 ### Collaboration aspects
 
 Collaboration functionality is represented by the user models which carry
-ordinary information about the individuals. An important aspect of this is that
-authentication information is not part of the user data.
+ordinary information about the individuals. An important aspect of this, is
+that authentication information is not part of the user data.
 
-The approach I took here can be called the identity based authentication. And
+The approach I took here can be called the _identity based authentication_. And
 the biggest difference to the traditional approach where the credentials are
 stored along with the personal data is that the authentication becomes
 pluggable. As an example, the individuals can use different kind of
@@ -101,7 +107,7 @@ more complex third-party providers using a handshake or token to provide login
 sessions.
 
 The memberships model serves to provide information on which user has access to
-which conversation. Where friendship model, which uses the membership through
+to conversations. Where friendship model, which uses the membership through
 the single table inheritance, provides information on which user know about
 each other, this way providing the minimum networking aspects.
 
@@ -113,12 +119,14 @@ membership and friendship entities.
 The collaboration design was also structured keeping in mind the fact that
 one application can communicate with another one, thus creating a federated
 architecture of resources that share common conversations. Although further
-work on this aspects was not done and is not included in this document.
+work on this aspects was not done. Please consult the last chapter to find more
+on the topic of _further work_.
 
 ### Real-time aspects
 
-To solve the aspect of the real-time communication, the database publish-subscribe
-functionality was used. This will be explored further in the implementation details.
+To solve the aspect of the real-time communication, the database
+publish-subscribe functionality was used. This will be explored further in the
+implementation details.
 
 An important note in regards to the real-time transport of the data is that
 keeping the database entities small, helped further simplify the implementation
@@ -132,41 +140,41 @@ the web API specifications and API endpoints.
 
 ### Synchronisation aspects
 
-In order to build a decentralized system, the application should provide
-identification information for its data models, so that a synchronisation
-process can avoid data conflicts or duplication. The initial work towards this
-was to provide unique identifiers for conversation related models and
-collaboration related models. In this case, a conversation carrying a unique
-identifier and owned by a user with a unique identifier can be easily tracked
-by a synchronisation process. I used universally unique identifiers (UUIDs),
-attached to the relevant models as a temporary solution until more work is done
-in order to support this functionality.
+In order to build the service as a distributed system, the application should
+provide identification information for its data models, so that a
+synchronisation process can avoid data conflicts or duplication. The initial
+work towards this was to provide unique identifiers for conversation related
+models and collaboration related models. In this case, a conversation carrying
+a unique identifier and owned by a user with a unique identifier can be easily
+tracked by a synchronisation process. I used universally unique identifiers
+(UUIDs), attached to the relevant models as a temporary solution until more
+work is done in order to support this functionality.
 
 ## Web API
 
 After reviewing the proposed objectives, the perspective of building the
 solution as a monolithic application that would handle the user interface and
 the back-end business logic was no longer approachable. Moving towards a
-decentralised architecture would require splitting the user-facing component
+distributed architecture would require splitting the user-facing component
 from the rest of the services. A protocol to provide the communication between
 these two is also required.
 
-Beside the architectural considerations, approaching the problem from a position
-where specifications and services implementation is placed in the front row,
-and user experience is considered a secondary aspect, didn't sound to
-lead to better results. This factor influenced the architectural decision
-of building the client interface and iterating over it until a better user
-experience is achieved, to become the starting point of the implementation stage.
-While the back-end or services implementation stage would have to follow up
-with the user-experience requirements. I will develop this subject also in the
-next chapter.
+Beside the architectural considerations, approaching the problem from a
+position where specifications and services implementation is placed in the
+front row, and user experience is considered a secondary aspect, didn't sound
+to lead to great results. This factor influenced the architectural decision of
+building the client interface in the first place. Iterating over it until a
+great user experience is achieved in fact, became the starting point of the
+implementation stage. As for the back-end implementation stage, it would have
+to follow up with the user-experience decisions and requirements. I will
+develop this subject also in the next chapter.
 
-In order to to design a protocol for the modern world distributed services, the
-Web API programmatic interface is considered one of the most common approaches
-lately. Web application programming interface build as a ReSTful architecture
-would not only allow us to provide open specifications to the future consumers
-but also allow potential developers to build upon it alternative clients or
-extend exiting features.
+In order to to design a protocol for a modern world distributed system, the Web
+API programmatic interface is considered one of the most common approaches
+lately. Web application programming interface built as a ReSTful architecture
+proved not only to allow us to provide open specifications to the future
+end-users but also allow potential developers to build upon it. They could come
+with alternative clients or extend exiting features.
 
 ### Endpoints
 
@@ -175,15 +183,16 @@ easily deliver the most of the API endpoints and focus on the specifications
 of each endpoint. The content type used to consume the API endpoints is JSON
 because of the human-readable and lightweight format.
 
-The endpoints were structured under a version namespace a prefixed with the
-``api`` keyword. The version namespace allows further improvements and
-deployments of the endpoints without any chance of breaking changes for older
+The endpoints were structured under a version namespace and prefixed with the
+``api`` keyword. The version namespace allows further improvements and releases
+of the endpoints to reduce or completely eliminate breaking changes for older
 consumers of the same API.
 
-Although the idea of nesting some of the endpoints sounds appealing, it proved
-to increase complexity when working with such endpoints as a consumer/client.
-The biggest challenge with nested endpoints is to generate the correct paths
-for resource URIs.
+The API has no sub-endpoints. A resource owning another resource practice is
+called _nesting_. Although the idea of nesting for some of the endpoints was
+appealing, it normally increases the complexity. When working with such
+endpoints as a consumer/client, some of the biggest challenges is to properly
+generate the correct paths for resource URIs.
 
 The authorization for all the endpoints is done by providing an expiring token
 as part of the HTTP request parameters or the HTTP headers. This approach is
@@ -192,12 +201,13 @@ of the system and the client development. Enforcing an expiring token also
 consolidates the security aspect of the API without requiring an end-user to
 change his authentication credentials on a regularly basis.
 
-By using Rails web framework the endpoints are handled by controllers and
-are very expressive. This was possible by following a programming pattern
-encouraged by the framework community and called _Skinny Controller, Fat Model_[^fatmodel].
-Following this practice results in a cleaner, more maintainable and testable
-code-base. I will list the conversations controller source code in order to
-provide an example of the final result.
+By following a programming pattern encouraged by the framework community and
+called _Skinny Controller, Fat Model_[^fatmodel], the controllers complexity
+was also eliminated. Following this practice proved to lead to a cleaner, more
+maintainable and testable code-base. Below is the source code listing for the
+conversations controller.
+
+\newpage
 
 ```ruby
 # API (v1) Conversation controller class
@@ -235,7 +245,9 @@ class Api::V1::ConversationsController < Api::V1::ApplicationController
 end
 ```
 
-The controller exposes endpoints to fetch available conversations as a
+\newpage
+
+The conversations controller exposes endpoints to fetch available records as a
 collection or as a single resource, and create a new resource. Below is a
 listing of the HTTP methods and the endpoint paths generated by the ``rake
 routes`` command from the application. You can see how the method names fit the
@@ -263,24 +275,23 @@ HTTP methods along with the endpoint paths.
 Each endpoint representing a single resource uses a serializer to generate the
 data in JSON using a common set of specifications. The initial draft of the
 specifications used by serializers was inspired from the JSON-API[^jsonapi]
-project initiative, although the most recent version is highly different from
-what is used in the project.
+project initiative. The most recent version of the JSON-API specifications is
+highly different from what is used in the current version though.
 
 Writing the specifications for the endpoint payloads, I followed some of the
 conventions where the main highlights are:
 
  * always provide a root key for the payload (usually matches the resource
-   endpoint), this helps embeding meta information aside from the expected data
+   endpoint), this helps embedding meta information aside from the expected data
  * keep the payload normalized, thus providing the associations using the
    relevant identifiers
  * embed records of different types in the same payload when possible to
    reduce the number of requests and client waiting time.
 
-
 A serializer can be considered as a light wrapper that uses the specifications
-and generates machine or human readable data without requiring the manual
-intervention to handle different formats or switching from one format to
-another based on the content type negotiation mechanism.
+and generates machine or human readable data. It also does not require the
+manual intervention to handle different formats and can be automated to switch
+from one format to another based on the content type negotiation mechanism.
 
 A serializer usually has a very simple structure and can be extended using
 inheritance. Below is a listing of the same conversation serializer.
@@ -307,7 +318,7 @@ end
 If we looks at the naming of the controller and the serializer, we can see that
 it follows the same pattern. This is a Rails convention and it helps keeping
 things organized without too much coupling logic. Below is a listing of a
-response from the conversations controller.
+response from the conversations controller using this serializer.
 
 ```json
 {
@@ -327,8 +338,8 @@ response from the conversations controller.
 
 In order to provide a mechanism that will enable real-time communication
 between the application and a third-party consumer (this can be a client or an
-another node in the network) we need to know when a new message arrived and
-send it over to the relevant recipient.
+another node in the network using the API) we need to know when a new message
+arrived and send it over to the relevant recipient.
 
 This description fits very well the messaging queues purpose, but messaging
 queues usually require a broker. This broker is usually a service that knows
@@ -346,9 +357,10 @@ can be represented by the type and database identifiers of the new content
 submitted by the conversation participants.
 
 By having the database normalised, the application message needs to provide
-just a minimal amount of the information about the data that was updated or needs
-to be synchronised. In our case, sending notifications about new conversation
-messages will also provide relevant information about the participants and
+just a minimal amount of the information about the data that was updated or
+needs to be synchronised. In our case, sending notifications about new
+conversation messages will also provide relevant information about the
+participants and
 attachments.
 
 ```ruby
@@ -387,7 +399,7 @@ end
 In the code listing above, a callback is triggered for the newly created
 conversation messages. This callback gathers information about the payload and
 serializes it in the form of `<type>, <id>`, and about the channels this
-payload needs to be distributed. The channels are the conversation participants
+payload needs to be distributed. The channels represent the conversation participants
 serialized in the form of `user_<id>`. The `Notifier` module is used by the
 messages model and overwrites the private method
 `Notifier#notification_channels` to provide the relevant information.
@@ -395,8 +407,8 @@ messages model and overwrites the private method
 ### Delivery of the updates
 
 Before describing the implementation details of how the messages arrive to the
-subscribers, I need to describe the web technology used to provide the transportation
-of the messages.
+subscribers, I need to describe the web technology used to provide the
+transportation of the messages.
 
 The nature of this functionality requires a subscriber to be connected to the
 right channel in order to receive updates. HTTP is not a reliable option and in
@@ -419,6 +431,8 @@ messages using the `select` API method afterwards which is blocking. The data
 received by the connection socket is processed and materialized into a model
 object. The code listing below represents the implementation of the database
 relevant aspects.
+
+\newpage
 
 ```ruby
 # Support for listening
@@ -511,7 +525,7 @@ end
 ```
 
 In the listing above is the controller implementation responsible for the
-`/api/v1/socket` endpoint, which is where WebSocket clients will connect to.
+`/api/v1/socket` endpoint. This is where WebSocket clients will connect to.
 Because of the blocking aspects of how the messages are received by the
 database connection, in order to keep the WebSocket alive until the client
 disconnects, the controller starts a thread and runs the delivery of the
@@ -528,10 +542,11 @@ handle a lot of users in order to actually make possible the communication. And
 although in our case the objectives stated that the initial purpose of the
 application is to provide services in small teams, the overall architecture
 needs some clarifications in regards to how small is a team until it is a big
-one and how this can be addressed when it happens.
+one and how this can be addressed when it happens. You can see above an
+illustration on how the communication is taking place using our architecture.
 
 The main limitations of the real-time mechanism rely mainly on the number of
-the connections the database can allowed to handle. In PostgreSQL, the
+the connections the database is allowed to handle. In PostgreSQL, the
 `work_mem` configuration directive is 1MB by default and represents the amount
 of memory a database connection can use. Knowing this it is easy to estimate
 and increase the maximum amount of connections the database server will handle.
@@ -539,6 +554,12 @@ In case of larger installations an external brokerless non-persistent messaging
 queue solution can be adopted (ZeroMQ[^zeromq] or nanomsg[^nanomsg] to name a
 few), replacing the current direct communication of a WebSocket with the
 database, and instead, connecting to the message queue service.
+
+In the case of the WebSocket failure, there are alternative solutions to solve
+the question of the synchronisation[^push]. One of the well known approaches is
+called the _long polling_ technique. It does not require special technology and
+works by issuing HTTP requests on a certain frequency. The response data is
+used to keep the client data in sync with the server changes.
 
 ## Testing
 
@@ -548,13 +569,13 @@ for models and integration tests for the controllers.
 
 For evaluation purposes of the application functionality, a client was also
 written. And although I will present the evaluation results in the next
-chapter, the client was used to write and run functional tests.
+chapter, the client was used to write and run functional tests too.
 
 To run the functional tests, a headless browser engine was used to load the
-application client and make sure it works with as would a user use it. This
-approach allows testing the client and directly the application in different
-user environments: from different operating systems to different browser
-versions and engines.
+application client. The test were written to make sure it works as an user
+would use it. This approach allowed testing the client and directly the
+application in different user environments: from different operating systems to
+different browser versions and engines.
 
 Finally a continuous integration server was used to run the tests against every
 change that was made along the development process. Continuous integration
@@ -564,11 +585,12 @@ without too much effort.
 ## Deployment
 
 In order to provide an automated installation method, a deployment strategy was
-developed. The application requirements include the installtion of third-party
+developed. The application requirements include the installation of third-party
 libraries, creating and migration of the database schema and assets compiling.
 All these tasks can result in human errors if not automated.
 
-A deployment tool was used to connect using SSH[^ssh] to the remote server
-and run the required operations that were provided using a configuration file.
-The tool also provided support for rolling back to previous releases in case
-of an emergency or a bad release.
+A deployment tool was used to connect using SSH[^ssh] to the remote server and
+run the required operations that were provided using a configuration file. The
+tool also provided support for rolling back to previous releases in case of an
+emergency or a bad release. Usually, the latest version from our repository
+would be installed.
