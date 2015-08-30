@@ -3,7 +3,7 @@
 
     \large{
       \textbf{
-        \uppercase{Realt-time communication using web technologies}
+        \uppercase{Real-time communication using web technologies}
       }
       \\
       \textbf{A modern internet messaging alternative}
