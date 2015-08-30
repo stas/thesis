@@ -2,9 +2,9 @@
 
 # Introduction
 
-Electronic mail or simply email, is currently the most wide-spread and adopted
+Electronic mail or simply email, is currently the most wide-spread adopted
 solution for exchanging digital messages on internet. This technology was
-designed in 1970s and since then almost didn't change. The technological
+designed in 1970s and since then it almost did not change. The technological
 challenges, market share and social responsibility that would imply replacing
 or improving the email attracts lots of minds and companies today.
 
@@ -83,12 +83,12 @@ can be easily visualised, does not mean it is simple to understand.
 
 The email format consists of two major sections, **the header** and **the body**.
 
-The header of the email consists on its own of multiple fields. All these fields
-provide information about the sender, recipients, subject and other
-less common details. The amount of headers a message can have, vary. This is
-not dependent just on sender and the software used to send the message. The
-message headers change or extend depending on various aspects and policies
-enforced by each and every node it gets transmitted through. All of the message
+The header of the email consists on its own of multiple fields. All these
+fields provide information about the sender, recipients, subject and other less
+common details. The amount of headers a message can have, vary. This is not
+dependent just on sender and the software used to send the message. The message
+headers change or can be extended depending on various aspects and policies
+enforced by each and every server it passes through. All of the message
 attachments are also part of the header.
 
 The body of the email contains text, therefore the content encoding of the body
@@ -161,10 +161,10 @@ privacy issue.
 
 #### Spamming and other internet email threats
 
-The lack of control over sender of the email message, resulted in unsolicited
-number of messages to keep growing over time. Spam is unsolicited email that
-can contain commercial information, phishing messages or attachments containing
-viruses.
+The lack of control over the sender of the email message, resulted in
+unsolicited number of messages to keep growing over time. Spam is unsolicited
+email that can contain commercial information, phishing messages or attachments
+containing viruses.
 
 Phishing messages can look like genuine emails from important entities asking
 for sensitive information. These messages trick victims to provide personal
@@ -206,12 +206,13 @@ Previously there were startups and technologies built in the hope of solving
 the same problem.
 
 Some of the best ideas encouraged the usage of a chat technology with IRC[^irc]
-or XMPP[^xmpp] protocols in a working environment. With time these solutions
-usage has been declining and evolved in chat applications that communicate
-using HTTP[^http] mainly.
+or XMPP[^xmpp] protocols in a working environment. With time these protocols
+usage has been declining. Things eventually evolved into chat applications that
+communicate using HTTP[^http] mainly.
 
-Other solutions include document oriented or task based real-time collaboration
-software suites but restricted to private networks with proprietary protocols.
+Other solutions include document oriented or task based real-time
+collaboration. Some of those restricted to private networks with proprietary
+protocols.
 
 ## Objectives
 
@@ -219,16 +220,16 @@ After studying the main features of the email and potential alternatives, the
 general idea was to create an exclusively web based server application that
 works with JSON[^json] as the main format of the messages.
 
-The format of the messages would support an extensible base schema. With
-clear difference between the message and attachment formats and with the privacy
-concerns in mind. Using real-time web technologies the delivery of the messages
-should happen instantly if a receiver is logged in.
+The format of the messages would support an extensible base schema. The
+attachments would have their own schema designed with the privacy concerns in
+mind. Using real-time web technologies the delivery of the messages
+would happen instantly if a receiver is logged in.
 
-The server architecture should require the minimum of resources and
-dependencies to run. It should be easily upgradable and scalable. And it should
-be designed as a simple to understand and use technology for both, users and
+The server architecture would require the minimum of resources and dependencies
+to run. It would be easily upgradable and scalable. And it would be designed as
+a simple technology to understand and use, for both, the users and the
 developers.
 
-To test and gather end-user feedback, a simple client should be implemented
-in the form of a thin-client thus its functioning should be independent from
-the server.
+To test and gather end-user feedback, a simple client should be implemented in
+the form of a thin-client. The client itself should be independent from the
+server.

@@ -17,7 +17,7 @@ development frameworks like Ember.js[^ember].
 At first, the welcome screen similarities with a generic email client seem very
 present, but this is not entirely correct. In order to deliver some of the
 changes that are entirely new concepts, we tried to make the user interface
-changes least dramatic.
+changes less dramatic.
 
 The side menu representing generally the email folders list was completely
 rebuilt to simplify the access to the conversations. This menu also stores the

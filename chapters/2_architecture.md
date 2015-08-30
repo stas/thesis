@@ -16,26 +16,27 @@ Some of the questions I had to answer were related to the final storage
 technology that will be adopted, along with the programming language and
 the framework/toolset that will be used to build and deliver the first version.
 
-Researching the storage options, I opted for PostgreSQL. Beside this being a
-very stable and easy to install open source database, it offered a set of
-reliable features that can be used on in order to provide key-value storage
-along with the relational entities. Studying the database pub-sub[^pgnotify]
-implementation it was clear this can reduce the technology in the stack too. I
-will go in more details on how these aspects of the database were used in the
-next chapters.
+Researching the storage options, I opted for PostgreSQL. PostgreSQL is known
+for being a very stable and easy to install open source database. It also
+offers a set of reliable features that can be used in order to provide
+key-value storage along with the relational entities. Studying the database
+pub-sub[^pgnotify] implementation it was clear this can reduce the technology
+in the stack too. I will go in more details on how these aspects of the
+database were used in the next chapters.
 
 The framework/toolset needed to build the application required to follow the
 RAD[^rad] approach because of the amount of prototyping I was estimating. I
 also needed a programming language with a community and an ecosystem oriented
-towards the latest edge web technologies, but with a decent stability
-and clear future.
+towards the latest edge web technologies. The development stability and future
+projections of the programming language were also important aspects in making
+the choice.
 
 I decided to use the Ruby programming language and Ruby on Rails web framework.
 The Rails community has a great impact on the web technologies and tools. This
 was proven by solutions like Sass[^sass] and Haml[^haml] and large scale
-adoption of concepts like ReST[^rest]ful Model-View-Controller,
-ActiveRecord[^activerecord] object-relational mapping, and test driven
-development and behaviour driven development.
+adoption of concepts like ReST[^rest]ful Model-View-Controller and
+ActiveRecord[^activerecord] object-relational mapping. It also provides great
+test driven development and behaviour driven development tools.
 
 ## Database schema
 
@@ -58,7 +59,7 @@ conversation knows about its participants, messages, attachments and other
 details. When users will want to send a message to somebody, they will start
 a conversation.
 
-The way this conversation carry information is through its messages. Messages
+The way the conversation carries information is through its messages. Messages
 are a separate model in the schema and represent the text users exchange inside
 a conversation. These messages can have replies and attachments. The initial
 version of the messages does not provide support for encryption.
@@ -107,10 +108,11 @@ authentication forms, from the classical password based authentication, to the
 more complex third-party providers using a handshake or token to provide login
 sessions.
 
-The memberships model serves to provide information on which user has access to
-to conversations. Where friendship model, which uses the membership through
-the single table inheritance, provides information on which user know about
-each other, this way providing the minimum networking aspects.
+The membership model serves to provide information on which user has access to
+the conversations. The friendship model uses the membership through the single
+table inheritance. Friendships provide information on which users know about
+each other. This way the minimum networking aspects are also provided by the
+application.
 
 In order to ask users to join conversations or discover other users, the
 invitation model was designed. This handles the information on what type of
@@ -161,8 +163,8 @@ these two is also required.
 
 Beside the architectural considerations, approaching the problem from a
 position where specifications and services implementation is placed in the
-front row, and user experience is considered a secondary aspect, didn't sound
-to lead to great results. This factor influenced the architectural decision of
+front row, and user experience is considered a secondary aspect, would not
+lead to great results. This factor influenced the architectural decision of
 building the client interface in the first place. Iterating over it until a
 great user experience is achieved in fact, became the starting point of the
 implementation stage. As for the back-end implementation stage, it would have
@@ -421,7 +423,7 @@ TCP connection and it works in a similar manner with a message queue by using
 channels. Although WebSocket is an independent protocol, it is considered a web
 technology and is supported very well.
 
-To dispatch the updates the application uses the WebSocket protocol along with
+To dispatch the updates, the application uses the WebSocket protocol along with
 the already mentioned PostgreSQL `LISTEN` command. The `LISTEN` command is not
 blocking and it works more like a registration call, announcing the server that
 any messages to a specific channel should be sent to this connection too. In

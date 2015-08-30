@@ -31,16 +31,16 @@ design software without designers and front-end developers, otherwise we just
 agree to forget we are building software for humans: for my mum, for my teacher
 or for my future kids.
 
-Beyond solving the technical problems and understanding how a component can be
-delivered faster, working in a startup was a lot of fun. I was exposed to
+Beyond solving the technical problems and understanding how to delivered our
+first version faster, working in a startup was a lot of fun. I was exposed to
 concerns that made me a more organised person, a better leader and a thoughtful
 enabler. I learned that communication, not just at the programming level, but
 team-wise, plays an important role in every day team motivation to build
 something great. In the end, I met new people, people I could listen to and
-learn a lot of things. This is because of the startup culture that is oriented
-towards sharing the knowledge and experience. During this time, I also met some
-of the best people I will probably ever work with and learn from. I feel great
-I can call them my friends.
+learn a lot of things from. This is because of the startup culture that is
+oriented towards sharing the knowledge and experience. During this time, I also
+met some of the best people I will probably ever work with and learn from. I
+feel great I can call them my friends.
 
 ## Further work
 
