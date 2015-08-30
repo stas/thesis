@@ -169,7 +169,7 @@ implementation stage. As for the back-end implementation stage, it would have
 to follow up with the user-experience decisions and requirements. I will
 develop this subject also in the next chapter.
 
-In order to to design a protocol for a modern world distributed system, the Web
+In order to design a protocol for a modern world distributed system, the Web
 API programmatic interface is considered one of the most common approaches
 lately. Web application programming interface built as a ReSTful architecture
 proved not only to allow us to provide open specifications to the future

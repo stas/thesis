@@ -1,7 +1,7 @@
 # Evaluation
 
 In order to evaluate the results and the functionality of the application, an
-application client was designed. In chapter 2, when working on the Web API, I
+application client was designed. In chapter 2, when working on the web API, I
 mentioned that the user experience and the user interface played an important
 role in the whole application design and implementation process. In fact, in
 order to reduce the amount of work on the application, along with a designer
@@ -15,18 +15,18 @@ development frameworks like Ember.js[^ember].
 \includegraphics[scale=0.39]{welcome-screen}
 
 At first, the welcome screen similarities with a generic email client seem very
-present, but this is not entirely correct. In order to deliver some of the changes
-that are entirely new concepts, we tried to make the user interface changes
-least dramatic.
+present, but this is not entirely correct. In order to deliver some of the
+changes that are entirely new concepts, we tried to make the user interface
+changes least dramatic.
 
-The side menu representing generally the email folders list was completely rebuilt
-to simplify the access to the conversations. This menu also stores the information
-about the user accounts, this way providing a common interface to access
-work and personal accounts.
+The side menu representing generally the email folders list was completely
+rebuilt to simplify the access to the conversations. This menu also stores the
+information about the user accounts, this way providing a common interface to
+access work and personal accounts.
 
-Based on the way conversations are usually done on email, the folders list
-and the conversations list changed too. We came to the idea that a conversation
-on email or internet messaging can be grouped in one of the following types:
+Based on the way conversations are usually done on email, the folders list and
+the conversations list changed too. We came to the idea that a conversation on
+email or internet messaging can be grouped in one of the following types:
 
  * inbox, meaning that this is a new conversation where somebody initiated a
    conversation with the user
@@ -36,30 +36,30 @@ on email or internet messaging can be grouped in one of the following types:
    search.
 
 Following these simple conversation states, we could show in an easier way what
-is the general status of his account.
+is the general status of the user account.
 
 \includegraphics[scale=0.39]{conversation-screen}
 
 The conversation screen was completely redesigned with the goal to save the
 user as much time and actions as possible. While the messages list looks
 similar to an email thread, the message composer became a minimal text editor.
-The composer area features a floating cursor carrying action buttons to add
+The composer area features a floating cursor. The cursor carries action buttons to add
 attachments to the current message or mention/add participants from the friends
 list. Attachments action opens a simple dialog and allows to embed one of the
 available attachment types. All the options and navigation inside the editor
 has intuitive keyboard support. Finally the text features markdown support and
 the contact list supports auto-complete.
 
-This screen also supports real-time updates coming from the Web API. The
-messages sent by participants will show up instantly, in a way similar to the
-the instant messaging communication software.
+This screen also supports real-time updates coming from the web API. Where the
+messages sent by participants show up instantly. This is very similar to the
+instant messaging communication software.
 
 ## Client implementation
 
 By using Ember.js to build the client, we could leverage its models that were
-designed for ReSTful APIs. This way a model named conversation will always use
-the conversations resource endpoints of the API and appropriate HTTP methods to
-create, delete or update a record.
+designed for ReSTful APIs. This way a model named _conversation_ will always
+use the _conversations_ resource endpoints of the API and the appropriate HTTP
+methods to create, delete or update a record.
 
 In order to provide the client with the real-time updates we provided the
 application with an initializer that connects to the application WebSocket
@@ -94,6 +94,8 @@ Founden.initializer
 
         store.pushPayload('message', data)
 ```
+
+\newpage
 
 This listing above includes the logic behind the initializer that handles
 WebSocket messages and loads these into the client store. Ember.js uses an
