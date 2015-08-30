@@ -5,12 +5,15 @@
 \theendnotes
 
 [^rfc]: IETF, _Request for Comments_, https://www.ietf.org/rfc.html
+[^email]: Wikipedia, _Email_, https://en.wikipedia.org/wiki/Email
 [^emailrfcs]: Takizawa Takashi, _RFC indices related to the Internet Mail_,\
     http://www.emaillab.org/emailref/emailref.html
 [^inboxzero]: Merlin Mann, _Inbox Zero action-based email_,
     http://www.43folders.com/izero
 [^irc]: Wikipedia, _Internet Relay Chat_,
     https://en.wikipedia.org/wiki/Internet_Relay_Chat
+[^mailvelope]: Mailvelope, _An Envelope for Email_,
+  https://www.mailvelope.com/en/about
 [^xmpp]: Wikipedia, _XMPP_, https://en.wikipedia.org/wiki/XMPP
 [^http]: W3C, _HTTP - Hypertext Transfer Protocol_, http://www.w3.org/Protocols/
 [^json]: Wikipedia, _JSON_, https://en.wikipedia.org/wiki/JSON
@@ -24,7 +27,8 @@
 [^rest]: Wikipedia, _Representational state transfer_,\
     https://en.wikipedia.org/wiki/Representational_state_transfer
 [^activerecord]: Martin Fowler, _Catalog of Patterns of Enterprise Application
-  Architecture: Active Record_, http://www.martinfowler.com/eaaCatalog/activeRecord.html
+  Architecture: Active Record_,
+  http://www.martinfowler.com/eaaCatalog/activeRecord.html
 [^uri]: W3C, _Naming and Addressing: URIs, URLs, ..._,
   http://www.w3.org/Addressing/
 [^jsonapi]: JSON API, _A specification for building APIs in JSON_,
