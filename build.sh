@@ -11,5 +11,5 @@ pandoc \
   --chapters \
   frontmatter/*.md \
   chapters/* \
-  endmatter/*.md \
+  backmatter/*.md \
   -o thesis.pdf
