@@ -176,7 +176,7 @@ API programmatic interface is considered one of the most common approaches
 lately. Web application programming interface built as a ReSTful architecture
 proved not only to allow us to provide open specifications to the future
 end-users but also allow potential developers to build upon it. They could come
-with alternative clients or extend exiting features.
+with alternative clients or extend existing features.
 
 ### Endpoints
 
