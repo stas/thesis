@@ -79,7 +79,7 @@ using the key-value storage provided by the PostgreSQL database and called
 database table column. The application defines the following attachments types:
 
  * uploads, abstract interface to handle file uploads to cloud services
- * timestamps, used to represent event informations
+ * timestamps, used to represent event information
  * links, used to store and cache an HTTP URI[^uri] meta-data
  * locations, used to store and display geographic locations
  * task lists, simple set of items to organize and track objectives
@@ -176,7 +176,7 @@ API programmatic interface is considered one of the most common approaches
 lately. Web application programming interface built as a ReSTful architecture
 proved not only to allow us to provide open specifications to the future
 end-users but also allow potential developers to build upon it. They could come
-with alternative clients or extend exiting features.
+with alternative clients or extend existing features.
 
 ### Endpoints
 

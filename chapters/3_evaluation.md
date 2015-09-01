@@ -117,6 +117,6 @@ how the application is used.
 
 Unfortunately we managed to get only 8 new users. In this case besides us,
 there was just too little activity generated to make an opinion if a certain
-functionality is easy or hard to use for new adopters. We did received though
+functionality is easy or hard to use for new adopters. We did receive though
 interest from developers after open sourcing the project. We consider, at
 least, the results of our work to be experimental.
