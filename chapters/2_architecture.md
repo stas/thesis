@@ -79,7 +79,7 @@ using the key-value storage provided by the PostgreSQL database and called
 database table column. The application defines the following attachments types:
 
  * uploads, abstract interface to handle file uploads to cloud services
- * timestamps, used to represent event informations
+ * timestamps, used to represent event information
  * links, used to store and cache an HTTP URI[^uri] meta-data
  * locations, used to store and display geographic locations
  * task lists, simple set of items to organize and track objectives
